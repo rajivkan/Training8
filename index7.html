@@ -1,0 +1,42 @@
+<html>
+	<head>
+		<title>Registration Page</title>
+		<style type="text/css">
+			.input-box{
+				border: 2px #ff00ff solid;
+				color: green;
+				font-size: 17px;
+			}
+			.button-box{
+				border: 2px #ffff00 solid;
+				background-color: #ff00ff;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="http://localhost/test/register.php" method="POST">
+			<table style="width:400px; background: #cceecc">
+				<tr>
+					<td>Name: </td>
+					<td><input class="input-box" name="userName"></td>
+				</tr>
+				<tr>
+					<td>EMail: </td>
+					<td><input class="input-box" name="txtEmail"></td>
+				</tr>
+				<tr>
+					<td>Password: </td>
+					<td><input class="input-box" name="txtPassword" type="password"></td>
+				</tr>
+				<tr>
+					<td style="text-align:center">
+						<input class="button-box" type="reset" value="Clear">
+					</td>
+					<td style="text-align:center">
+						<input class="button-box" type="submit" value="Register">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
