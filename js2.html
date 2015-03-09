@@ -1,0 +1,36 @@
+<html>
+	<head>
+		
+	</head>
+	
+	<body>
+		<div id="div1" class="user-class" name="divName1">Div 1</div>
+		<div id="div2" name="divName1">Div 2</div>
+		<span class="user-class">Span 1</span>
+
+		<button id="btn1" onclick="clickMe()" onmousedown="clickMe()">Click Me</button>
+
+		<script type="text/javascript">
+			function clickMe(){
+				// returns only first element using getElementById method
+				document.getElementById("div1").innerHTML = "Javascript div 1";
+				
+				// return multiple elements inside the array using getElementsByTagName method
+				var divElementsByTagName = document.getElementsByTagName("div");
+				if(divElementsByTagName.length > 0)
+					divElementsByTagName[0].innerHTML = "Modified div content by getElementsByTagName";
+
+				// return multiple elements inside the array using getElementsByTagName method
+				var divElementsByClassName = document.getElementsByClassName("user-class");
+				if(divElementsByClassName.length > 0)
+					divElementsByClassName[1].innerHTML = "Modified div content by getElementsByClassName";
+
+				// return multiple elements inside the array using getElementsByName method
+				var divElementsByName = document.getElementsByName("divName1");
+				if(divElementsByName.length > 0)
+					divElementsByName[1].innerHTML = "Modified div content by getElementsByName";
+			}
+
+		</script>
+	</body>
+</html>
