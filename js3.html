@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			function onChangeImageManual(){
+				if(document.getElementById("imgOnOff").src.match("Off.png")){
+					document.getElementById("imgOnOff").src = "images/On.png"
+				}
+				else{
+					document.getElementById("imgOnOff").src = "images/Off.png"
+				}
+			}
+
+			var timer;
+			function onChangeImageAuto(){
+				timer = setInterval(onChangeImageManual, 500);
+			}
+
+			function onStopImageAuto(){
+				clearInterval(timer);
+			}
+
+			// setTimeout(function(){
+			// 	alert("call");
+			// }, 3000);
+
+			setInterval(function(){
+				var dt = new Date();
+				var m_names = new Array("January", "February", "March", 
+										"April", "May", "June", "July", "August", "September", 
+										"October", "November", "December");
+				document.getElementById("currentTime").innerHTML = dt.getDate()+"-"+ m_names[dt.getMonth()] +"-"+ dt.getFullYear()+"   "+ dt.toLocaleTimeString(); // mm/dd/yyyy
+			}, 1000);
+		</script>
+	</head>
+
+	<body>
+		<span id="currentTime" style="float:right"></span>
+		<img id="imgOnOff" src="images/Off.png">
+		<button onclick="onChangeImageManual()">Change image Manual</button>
+		<button onclick="onChangeImageAuto()">Change image Auto</button>
+
+		<button onclick="onStopImageAuto()">Stop changing image Auto</button>
+	</body>
+</html>
