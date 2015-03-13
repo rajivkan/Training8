@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<style type="text/css">
+			table,tr,td{
+				border: 1px red solid;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+
+		<table id="table1" cellspacing="0"></table>
+
+		<script type="text/javascript">
+			var arr = [[1,2],[3,4,334],[5,6, 454, 4545, 454]];
+			for(var i=0; i<5; i++){
+				for(var j = 0; j<=i; j++){
+					document.getElementById("div1").innerHTML = document.getElementById("div1").innerHTML + "*";
+				}
+				document.getElementById("div1").innerHTML = document.getElementById("div1").innerHTML + "<br>";
+			}
+
+			var noOfCol = 0;
+			for(var i= 0; i < arr.length; i++){
+				if(noOfCol < arr[i].length){
+					noOfCol = arr[i].length;
+				}
+			}
+			var str = "";
+
+
+			for(var i= 0; i < arr.length; i++){
+				str += "<tr>";
+				for(var j = 0; j < noOfCol; j++){
+					if(arr[i][j] != undefined){
+						str += "<td>"+ arr[i][j] + "</td>";
+					}
+					else{
+						str += "<td></td>";
+					}
+				}
+				str += "</tr>";	
+			}
+
+			document.getElementById("table1").innerHTML = str;
+		</script>
+	</body>
+</html>
+<!--
+	*
+	**
+	***
+	****
+	*****
+	******
+-->

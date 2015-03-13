@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<script type="text/javascript">
+
+			function onSubmit(){
+				var name = document.getElementById("txtName");
+				var address = document.getElementById("txtAddress");
+				var email = document.getElementById("txtEmail");
+
+				if(name.value == ""){
+					alert("Name is required.")
+					name.focus();
+					return false;
+				}
+
+				if(address.value == ""){
+					alert("Address is required.")
+					address.focus();
+					return false;
+				}
+				if(email.value == ""){
+					alert("Email is required.")
+					email.focus();
+					return false;
+				}
+
+				var re = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    			if(!re.test(email.value)){
+    				alert("Email is not in correct format.");
+    				email.focus();
+    				return false;
+    			}
+				alert("Form data is submitted.");
+			}
+		</script>
+	</head>
+	<body>
+		<table style="width: 300px">
+			<tr>
+				<td>
+					Name:
+				</td>
+				<td>
+					<input id="txtName">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Address:
+				</td>
+				<td>
+					<input id="txtAddress">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Email:
+				</td>
+				<td>
+					<input id="txtEmail">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align:center">
+					<input type="button" value="Submit" onclick="onSubmit()">
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
