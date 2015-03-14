@@ -1,0 +1,118 @@
+<html>
+	<head>
+		<script type="text/javascript">
+
+			function onSubmit(){
+				var name = document.getElementById("txtName");
+				var address = document.getElementById("txtAddress");
+				var email = document.getElementById("txtEmail");
+
+				if(name.value == ""){
+					alert("Name is required.")
+					name.focus();
+					return false;
+				}
+
+				if(address.value == ""){
+					alert("Address is required.")
+					address.focus();
+					return false;
+				}
+				if(email.value == ""){
+					alert("Email is required.")
+					email.focus();
+					return false;
+				}
+
+				var re = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    			if(!re.test(email.value)){
+    				alert("Email is not in correct format.");
+    				email.focus();
+    				return false;
+    			}
+				addRecord(name.value, address.value, email.value);
+				return true;
+			}
+
+			var arrayRecord = [];
+			function addRecord(name, address, email){
+				var obj = {};
+				obj.uname = name;
+				obj.address = address;
+				obj.email = email;
+
+				arrayRecord.push(obj);
+				displayRecord();
+				document.getElementById("txtName").value = "";
+				document.getElementById("txtAddress").value = "";
+				document.getElementById("txtEmail").value = "";
+			}
+
+			function displayRecord(){
+				var str = "<tr style='font-weight:bold'><td>Name</td><td>Address</td><td>Email</td></td>";
+				for(var i=0; i<arrayRecord.length; i++){
+					str += "<tr><td>"+ arrayRecord[i].uname +"</td><td>"+ arrayRecord[i].address +"</td><td>"+ arrayRecord[i].email +"</td></td>";
+				}
+
+				document.getElementById("tplRecord").innerHTML = str;
+			}
+		</script>
+		<style type="text/css">
+			#tplRecord, #tplRecord tr, #tplRecord td{
+				border: 1px #333 solid;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- <form action="http://localhost/test/register.php" method="POST"> -->
+			<table style="width:100%">
+				<tr>
+					<td style="width:30%">
+						<table style="width: 100%">
+							<tr>
+								<td>
+									Name:
+								</td>
+								<td>
+									<input id="txtName" name="uname">
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Address:
+								</td>
+								<td>
+									<textarea id="txtAddress" name="address"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Email:
+								</td>
+								<td>
+									<input id="txtEmail" name="email">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="text-align:center">
+									<input type="submit" value="Submit" onclick="return onSubmit()">
+								</td>
+							</tr>
+						</table>
+					</td>
+
+					<td style="vertical-align:top">
+						<table id="tplRecord" style="width:70%">
+							<tr>
+								<td>
+									Record not found!
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			
+		<!-- </form> -->
+	</body>
+</html>

@@ -31,40 +31,46 @@
     				return false;
     			}
 				alert("Form data is submitted.");
+				return true;
 			}
 		</script>
 	</head>
 	<body>
-		<table style="width: 300px">
-			<tr>
-				<td>
-					Name:
-				</td>
-				<td>
-					<input id="txtName">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Address:
-				</td>
-				<td>
-					<input id="txtAddress">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Email:
-				</td>
-				<td>
-					<input id="txtEmail">
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="text-align:center">
-					<input type="button" value="Submit" onclick="onSubmit()">
-				</td>
-			</tr>
-		</table>
+		<form action="http://localhost/test/register.php" method="POST">
+			<table style="width: 300px">
+				<tr>
+					<td>
+						Name:
+					</td>
+					<td>
+						<input id="txtName" name="uname">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Address:
+					</td>
+					<td>
+						<textarea id="txtAddress" name="address"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Email:
+					</td>
+					<td>
+						<input id="txtEmail" name="email">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="reset" value="Clear">
+					</td>
+					<td style="text-align:center">
+						<input type="submit" value="Submit" onclick="return onSubmit()">
+					</td>
+				</tr>
+			</table>
+		</form>
 	</body>
 </html>
