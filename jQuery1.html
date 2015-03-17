@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript">
+			function onLoad(){
+				// id
+				console.log("Id: "+ $("#div1").html());
+
+				// tag
+				console.log("tag: "+$("div").html());
+
+				// class
+				console.log("class: "+$(".abc").html());
+
+				// fiter elements
+				console.log($("#div1 p span"));
+				console.log($("#div1 span"));
+
+				// get a value from div
+				console.log($("#div1").html());
+				console.log($("#div1").text());
+			}
+		</script>
+	</head>
+
+	<body onload="onLoad()">
+		<div id="div1" class="abc">Div 1
+			<label>label 1</label>
+			<label>label 2</label>
+			<p>p 1
+				<span>span 122324</span>
+			</p>
+			<p>p 2</p>
+			<span>span 123</span>
+		</div>
+		<div id="div2" class="abc">Div 2</div>
+		<span id="span1" class="abc">span 2</div>
+	</body>
+</html>
