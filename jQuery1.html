@@ -19,6 +19,10 @@
 				// get a value from div
 				console.log($("#div1").html());
 				console.log($("#div1").text());
+
+				navigator.geolocation.getCurrentPosition(function(result){
+					alert("Result: "+ JSON.stringify(result))
+				})
 			}
 		</script>
 	</head>
