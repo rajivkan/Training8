@@ -2,7 +2,8 @@
 	<head>
 		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
 		<script type="text/javascript">
-			function onLoad(){
+			function onLoad(event1){
+				//alert("x: "+event1.clientX+"   y:"+event1.clientY)
 				// id
 				console.log("Id: "+ $("#div1").html());
 
@@ -23,11 +24,54 @@
 				navigator.geolocation.getCurrentPosition(function(result){
 					alert("Result: "+ JSON.stringify(result))
 				})
+
+				var btn = $("<button></button>");
+				btn.html("Click Me");
+				btn.click(function(){
+					alert(txt.val());
+				});
+				$("body").append(btn);
+
+				var txt = $("<input></input>");
+				txt.val("India");
+				$("body").append(txt);
+
+
+
+				var btn2 = document.createElement("button");
+				btn2.innerHTML = "javascript button";
+				document.getElementById("div1").appendChild(btn2);
+				// btn2.onclick = function(){
+				// 	alert("Clicked by javascript button");
+				// }
+				btn2.addEventListener("click", function(){
+					alert("Clicked by javascript button");
+					var evt = new CustomEvent("My_Event");
+					evt.user = {"username": "Raj", "password": "password1"}
+					window.dispatchEvent(evt);
+				})
 			}
+
+			$(document).ready(function(){
+				//alert("call 2");
+			});
+
+			//window.addEventListener("click", onLoad);
+			window.addEventListener("load", onLoad);
+
+			window.addEventListener("My_Event", function(event){
+				alert(""+ JSON.stringify(event.user));
+			})
 		</script>
+		<style type="text/css">
+			body{
+				margin: 0px;
+				padding: 0px;
+			}
+		</style>
 	</head>
 
-	<body onload="onLoad()">
+	<body>
 		<div id="div1" class="abc">Div 1
 			<label>label 1</label>
 			<label>label 2</label>
@@ -39,5 +83,6 @@
 		</div>
 		<div id="div2" class="abc">Div 2</div>
 		<span id="span1" class="abc">span 2</div>
+
 	</body>
 </html>
