@@ -1,0 +1,94 @@
+<html>
+	<head>
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript">
+
+			function onSubmit(){
+				var name = $("#txtName");
+				var address = $("#txtAddress");
+				var email = $("#txtEmail");
+
+				if(name.val() == ""){
+					alert("Name is required.")
+					name.focus();
+					return false;
+				}
+
+				if(address.val() == ""){
+					alert("Address is required.")
+					address.focus();
+					return false;
+				}
+				if(email.val() == ""){
+					alert("Email is required.")
+					email.focus();
+					return false;
+				}
+
+				var re = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    			if(!re.test(email.val())){
+    				alert("Email is not in correct format.");
+    				email.focus();
+    				return false;
+    			}
+
+    			 var request = {};
+    			 // for POST method
+    			// request.url = "http://localhost/test/register1.php";
+    			// request.data = {"uname": $("#txtName").val(), "address": $("#txtAddress").val(), "email": $("#txtEmail").val()};
+    			// request.method = "POST";
+
+    			//for GET method
+    			 request.url = "http://localhost/test/register.php?uname="+$("#txtName").val()+"&address="+$("#txtAddress").val()+"&email="+$("#txtEmail").val();
+    			 request.url = request.url.replace(/, /g, ",%20");
+    			 request.method = "GET";
+    			$.ajax(request).done(function(result){
+    				alert("Form data is posted successfully.");
+    			}).error(function(error){
+    				alert("There is some error. Please try again.");
+    			})
+
+				
+				return true;
+			}
+		</script>
+	</head>
+	<body>
+		<!-- <form action="http://localhost/test/register.php"> -->
+			<table style="width: 300px">
+				<tr>
+					<td>
+						Name:
+					</td>
+					<td>
+						<input id="txtName" name="uname">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Address:
+					</td>
+					<td>
+						<textarea id="txtAddress" name="address"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Email:
+					</td>
+					<td>
+						<input id="txtEmail" name="email">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="reset" value="Clear">
+					</td>
+					<td style="text-align:center">
+						<input type="submit" value="Submit" onclick="return onSubmit()">
+					</td>
+				</tr>
+			</table>
+		<!-- </form> -->
+	</body>
+</html>
