@@ -1,0 +1,14 @@
+<html ng-app="testApp">
+	<head>
+		<script type="text/javascript" src="js/angular/lib/angular.min.js"></script>
+		<script type="text/javascript">
+		var testAppModule = angular.module('testApp', []);
+		testAppModule.controller('messageController',['$scope', function($scope){
+			$scope.message = "Welcome to AngularJS";
+		}]);
+		</script>
+	</head>
+	<body ng-controller="messageController">
+		{{message}}
+	</body>
+</html>

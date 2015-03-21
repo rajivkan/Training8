@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript">
+
+			$(document).ready(function(){
+
+				var request = {};
+				request.url = "http://localhost/test/register.php";
+				request.method = "GET";
+
+				$.ajax(request).done(function(result){
+					var studentResult = JSON.parse(result).data;
+					var strRecord = "<tr><td>Name</td><td>Email</td></tr>";
+					$.each(studentResult, function(index, item){
+						strRecord += "<tr><td>"+ item.name +"</td><td>"+ item.email +"</td></tr>";
+					});
+					//$("body").html(studentResult.join("<br>"))
+					$("#tblRecord").html(strRecord);
+
+				}).error(function(err){
+					alert("Unable to load student data. Please try again.");
+				})
+
+
+				var img = $("<img></img>");
+				img.attr("src", "images/apple.jpeg");
+				$("#div1").append(img);
+
+				var spn = $("<span></span>");
+				//spn.html("<font style='color:#ff0000'>Span font content </font>");
+				spn.html("Span font content");
+				spn.attr("style", "color:#ff0000; font-size: 30px")
+				spn.css("font-size", "50px");
+				$("#div1").append(spn);
+			});
+
+		</script>
+
+		<style type="text/css">
+			table{
+				width: 80%;
+			}
+			table, tr, td{
+				border: 1px #ccc solid;
+			}
+		</style>
+	</head>
+	<body>
+		<table id="tblRecord">
+			
+		</table>
+
+		<div id="div1"></div>
+	</body>
+</html>

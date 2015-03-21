@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	<style type="text/css">
+
+		body{
+			margin: 0;
+			padding: 0;
+		}
+
+	</style>
+</head>
+
+<body>
+	<table style="width:100%">
+		<tr>
+			<td id="headerSection" colspan="2" style="text-align:center; height:80px; background: #ff0000">
+				Welcome to HTML Sample Application
+			</td>
+		</tr>
+
+		<tr id="mainSection">
+			<td style="width:150px; vertical-align:top">
+				<a href="home.html">Home</a>
+				<br>
+				<a href="about.html">About</a>
+				<br>
+				<a href="contact.html">Contact</a>
+				
+			</td>
+			<td style="vertical-align:top">
+				Contactus Content
+			</td>
+		</tr>
+
+		<tr>
+			<td id="footerSection" colspan="2" style="text-align:center; height:30px; background: #cccccc">
+				Footer content
+			</td>
+		</tr>
+	</table>
+
+	<script type="text/javascript">
+		$("#mainSection").height($(document).height()-$("#headerSection").height()-$("#footerSection").height() - 10);
+	</script>
+</body>
+</html>
