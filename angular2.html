@@ -1,0 +1,118 @@
+<html ng-app="testApp">
+	<head>
+		<script type="text/javascript" src="js/angular/lib/angular.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript">
+		var testAppModule = angular.module('testApp', []);
+		
+
+		testAppModule.controller('usernameController',['$scope', function($scope){
+			var arrayData = [];
+			$scope.onAdd = function(){
+				if($("#txtName").val() == "" || $("#txtAddress").val() == "" || $("#txtEmail").val() == ""){
+					alert("All the fields are mandatory.");
+					return false;
+				}
+
+				var re = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    			if(!re.test($("#txtEmail").val())){
+    				alert("Email is not in correct format.");
+    				$("#txtEmail").focus();
+    				return false;
+    			}
+
+    			var obj = {};
+    			obj.name = $("#txtName").val();
+    			obj.address = $("#txtAddress").val();
+    			obj.email = $("#txtEmail").val();
+    			arrayData.push(obj);
+    			$scope.studentData = arrayData;
+			}
+		}]);
+
+		function onReset(){
+			$("#txtName").val("")
+			$("#txtAddress").val("")
+			$("#txtEmail").val("")
+		}
+		</script>
+
+		<style type="text/css">
+			table, td, tr{
+
+			}
+		</style>
+	</head>
+	<body>
+		<table style="width:100%" ng-controller="usernameController">
+			<tr>
+				<td style="width:25%">
+					<table style="width: 300px">
+						<tr>
+							<td>
+								Name:
+							</td>
+							<td>
+								<input id="txtName" name="uname">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Address:
+							</td>
+							<td>
+								<textarea id="txtAddress" name="address"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Email:
+							</td>
+							<td>
+								<input id="txtEmail" name="email">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="reset" value="Clear" onclick="onReset()">
+							</td>
+							<td style="text-align:center">
+								<input type="submit" value="Submit" ng-click="onAdd()">
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td style="width:75%; vertical-align:top">
+					<table style="width:100%">
+						<tr>
+							<td>
+								Search:
+							</td>
+							<td colspan="2">
+								<input ng-model="txtSearch">
+							</td>
+						</tr>
+						<tr>
+							<td>Name</td>
+							<td>Address</td>
+							<td>Email</td>
+						</tr>
+						<tr ng-repeat="student in studentData | filter:txtSearch | orderBy:'name':true">
+							<td>
+								{{student.name}}
+							</td>
+							<td>
+								{{student.address}}
+							</td>
+							<td>
+								{{student.email}}
+							</td>
+						</tr>
+					</table>
+
+				</td>
+			</tr>
+		</table>
+		
+	</body>
+</html>

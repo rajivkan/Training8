@@ -21,7 +21,7 @@
 				alert("button 2 clicked");
 			}
 
-			$scope.studentData = [{name: "Student 1", address: "Address 1"}, {name: "Student 2", address: "Address 2"}, {name: "Student 3", address: "Address 3"}, {name: "Student 4", address: "Address 4"}, {name: "Student 5", address: "Address 5"}];
+			$scope.studentData = [{name: "Student 2", address: "Bangalore"}, {name: "Student 3", address: "Goa"}, {name: "Student 1", address: "Delhi"}, {name: "Student 5", address: "Hydrabad"}, {name: "Student 4", address: "Chennai"}];
 		}]);
 		</script>
 
@@ -49,7 +49,9 @@
 				</tr>
 			</table>
 		</div>
-
+		<br>
+		<br>
+		Search: <input ng-model="txtSearch">
 		<div ng-controller="usernameController">
 			Div 2 {{username}}
 			<button ng-click="onClickButton2()">Click Me</button>
@@ -59,12 +61,12 @@
 					<td>Name</td>
 					<td>Address</td>
 				</tr>
-				<tr ng-repeat="student in studentData">
+				<tr ng-repeat="student in studentData | filter:txtSearch | orderBy:'address':true">
 					<td>
-						{{student.name}}
+						{{student.name | uppercase}}
 					</td>
 					<td>
-						{{student.address}}
+						{{student.address | lowercase}}
 					</td>
 				</tr>
 			</table>
