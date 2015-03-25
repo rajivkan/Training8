@@ -1,0 +1,75 @@
+<html ng-app="testApp">
+	<head>
+		<script type="text/javascript" src="js/angular/lib/angular.min.js"></script>
+		<script type="text/javascript" src="js/angular/lib/angular-route.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript">
+
+			var testAppModule = angular.module("testApp", ['ngRoute']);
+			testAppModule.config(["$routeProvider", function($routeProvider){
+				$routeProvider
+					.when("/", {
+						templateUrl: "template/home.html",
+						controller: "homeController"
+					})
+					.when("/about", {
+						templateUrl: "template/aboutus.html",
+						controller: "aboutController"
+					})
+					.when("/contact", {
+						templateUrl: "template/contactus.html",
+						controller: "contactController"
+					})
+			}]);
+
+			testAppModule.controller("homeController", ["$scope", function($scope){
+				$scope.welcomeMessage = "This is my first angularjs application"
+			}]);
+
+			testAppModule.controller("aboutController", ["$scope", function($scope){
+				$scope.aboutMessage = "About content"
+			}]);
+
+			testAppModule.controller("contactController", ["$scope", function($scope){
+				$scope.contactMessage = "Contactus content"
+			}]);
+		</script>
+	</head>
+	<body>
+		<table style="width:100%">
+		<tr>
+			<td id="headerSection" colspan="2" style="text-align:center; height:80px; background: #ff0000">
+				Welcome to AngularJS Sample Application
+			</td>
+		</tr>	
+
+		<tr id="mainSection">
+			<td style="width:150px; vertical-align:top">
+				<a href="#/">Index</a>
+				<br>
+				<a href="#/about">About</a>
+				<br>
+				<a href="#/contact">Contact</a>
+				
+			</td>
+			<td style="vertical-align:top">
+				
+				<!-- placeholder for template -->
+				<div ng-view></div>
+
+			</td>
+		</tr>
+
+		<tr>
+			<td id="footerSection" colspan="2" style="text-align:center; height:30px; background: #cccccc">
+				Footer content
+			</td>
+		</tr>
+	</table>
+
+	<script type="text/javascript">
+		$("#mainSection").height($(document).height()-$("#headerSection").height()-$("#footerSection").height() - 10);
+	</script>
+		
+	</body>
+</html>
