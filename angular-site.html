@@ -9,6 +9,9 @@
 			testAppModule.config(["$routeProvider", function($routeProvider){
 				$routeProvider
 					.when("/", {
+						templateUrl: "partials/login-form.html"
+					})
+					.when("/home", {
 						templateUrl: "template/home.html",
 						controller: "homeController"
 					})
@@ -33,6 +36,35 @@
 			testAppModule.controller("contactController", ["$scope", function($scope){
 				$scope.contactMessage = "Contactus content"
 			}]);
+
+			testAppModule.directive("userlogin", function(){
+				return{
+					restrict: "C", // directive typr --- E / A / C / M
+					templateUrl: "template/login.html",
+					controller: "loginController"
+				}
+			});
+
+			testAppModule.controller("loginController", ["$scope", function($scope){
+				$scope.onLogin = function(){
+					if(!$scope.username){
+						alert("Username id required.");
+						return;
+					}
+					if(!$scope.password){
+						alert("Password id required.");
+						return;
+					}
+					if($scope.username == "admin" && $scope.password == "password"){
+						$("#navLinks").show();
+						window.location.href = "#/home"
+					}
+					else{
+						alert("Username or Password is invalid. Please try again.");
+					}
+				}
+			}]);
+
 		</script>
 	</head>
 	<body>
@@ -44,8 +76,8 @@
 		</tr>	
 
 		<tr id="mainSection">
-			<td style="width:150px; vertical-align:top">
-				<a href="#/">Index</a>
+			<td id="navLinks" style="width:150px; vertical-align:top; display: none">
+				<a href="#/home">Index</a>
 				<br>
 				<a href="#/about">About</a>
 				<br>
@@ -55,7 +87,9 @@
 			<td style="vertical-align:top">
 				
 				<!-- placeholder for template -->
-				<div ng-view></div>
+				<div ng-view>
+
+				</div>
 
 			</td>
 		</tr>
