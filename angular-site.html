@@ -23,6 +23,10 @@
 						templateUrl: "template/contactus.html",
 						controller: "contactController"
 					})
+					.when("/student", {
+						templateUrl: "template/students.html",
+						controller: "studentController"
+					})
 			}]);
 
 			testAppModule.controller("homeController", ["$scope", function($scope){
@@ -35,6 +39,21 @@
 
 			testAppModule.controller("contactController", ["$scope", function($scope){
 				$scope.contactMessage = "Contactus content"
+			}]);
+
+			testAppModule.controller("studentController", ["$scope", "$http", function($scope, $http){
+				$scope.headerMessage = "Student Lists"
+				var req = {
+	             method: "GET",
+	             url: "http://localhost/test/register.php",
+	            }
+
+				$http(req).success(function(result){
+					$scope.students = result.data;
+				})
+				.error(function(err){
+					alert("Unable to load the student record(s).");
+				})
 			}]);
 
 			testAppModule.directive("userlogin", function(){
@@ -82,7 +101,8 @@
 				<a href="#/about">About</a>
 				<br>
 				<a href="#/contact">Contact</a>
-				
+				<br>
+				<a href="#/student">Students</a>
 			</td>
 			<td style="vertical-align:top">
 				
