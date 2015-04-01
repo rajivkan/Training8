@@ -4,6 +4,10 @@
 			<h3>{{headerMessage}}</h4>
 		</td>
 	</tr>
+	<tr>
+		<td colspan="2">Search: &nbsp;&nbsp;&nbsp; <input ng-model="studentname"></td>
+		
+	</tr>
 	<tr style="font-weight:bold">
 		<td>
 			Name
@@ -12,7 +16,7 @@
 			Email
 		</td>
 	</tr>
-	<tr ng-repeat="student in students">
+	<tr ng-repeat="student in students | filter:studentname">
 		<td>
 			{{student.name}}
 		</td>

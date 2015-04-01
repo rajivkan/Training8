@@ -3,88 +3,16 @@
 		<script type="text/javascript" src="js/angular/lib/angular.min.js"></script>
 		<script type="text/javascript" src="js/angular/lib/angular-route.min.js"></script>
 		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-		<script type="text/javascript">
-
-			var testAppModule = angular.module("testApp", ['ngRoute']);
-			testAppModule.config(["$routeProvider", function($routeProvider){
-				$routeProvider
-					.when("/", {
-						templateUrl: "partials/login-form.html"
-					})
-					.when("/home", {
-						templateUrl: "template/home.html",
-						controller: "homeController"
-					})
-					.when("/about", {
-						templateUrl: "template/aboutus.html",
-						controller: "aboutController"
-					})
-					.when("/contact", {
-						templateUrl: "template/contactus.html",
-						controller: "contactController"
-					})
-					.when("/student", {
-						templateUrl: "template/students.html",
-						controller: "studentController"
-					})
-			}]);
-
-			testAppModule.controller("homeController", ["$scope", function($scope){
-				$scope.welcomeMessage = "This is my first angularjs application"
-			}]);
-
-			testAppModule.controller("aboutController", ["$scope", function($scope){
-				$scope.aboutMessage = "About content"
-			}]);
-
-			testAppModule.controller("contactController", ["$scope", function($scope){
-				$scope.contactMessage = "Contactus content"
-			}]);
-
-			testAppModule.controller("studentController", ["$scope", "$http", function($scope, $http){
-				$scope.headerMessage = "Student Lists"
-				var req = {
-	             method: "GET",
-	             url: "http://localhost/test/register.php",
-	            }
-
-				$http(req).success(function(result){
-					$scope.students = result.data;
-				})
-				.error(function(err){
-					alert("Unable to load the student record(s).");
-				})
-			}]);
-
-			testAppModule.directive("userlogin", function(){
-				return{
-					restrict: "C", // directive typr --- E / A / C / M
-					templateUrl: "template/login.html",
-					controller: "loginController"
-				}
-			});
-
-			testAppModule.controller("loginController", ["$scope", function($scope){
-				$scope.onLogin = function(){
-					if(!$scope.username){
-						alert("Username id required.");
-						return;
-					}
-					if(!$scope.password){
-						alert("Password id required.");
-						return;
-					}
-					if($scope.username == "admin" && $scope.password == "password"){
-						$("#navLinks").show();
-						window.location.href = "#/home"
-					}
-					else{
-						alert("Username or Password is invalid. Please try again.");
-					}
-				}
-			}]);
-
-		</script>
+		
+		<script type="text/javascript" src="js/angular/app.js"></script>
+		<script type="text/javascript" src="js/angular/services.js"></script>
+		<script type="text/javascript" src="js/angular/controllers.js"></script>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+		</style>
 	</head>
 	<body>
 		<table style="width:100%">
